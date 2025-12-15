@@ -7,6 +7,20 @@
     <title>@yield('title', __('Said Albalahy'))</title>
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', __('Said Albalahy'))">
+    <meta property="og:description" content="@yield('meta_description', __('Backend developer specialized in building robust web applications using Laravel. I turn complex ideas into efficient and fast software systems.'))">
+    <meta property="og:image" content="@yield('meta_image', asset('images/profile.png'))">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', __('Said Albalahy'))">
+    <meta property="twitter:description" content="@yield('meta_description', __('Backend developer specialized in building robust web applications using Laravel. I turn complex ideas into efficient and fast software systems.'))">
+    <meta property="twitter:image" content="@yield('meta_image', asset('images/profile.png'))">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +80,7 @@
         </nav>
     </header>
 
-    <main id="swup" class="transition-opacity duration-500">
+    <main class="transition-opacity duration-500">
         {{ $slot }}
     </main>
 
@@ -76,6 +90,11 @@
     <!-- Footer -->
     <footer class="bg-dark-900/50 border-t border-white/5 py-12 mt-20">
         <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm text-gray-400">
+                <a href="{{ route('privacy') }}" wire:navigate class="hover:text-primary-400 transition-colors">{{ __('Privacy Policy') }}</a>
+                <a href="{{ route('terms') }}" wire:navigate class="hover:text-primary-400 transition-colors">{{ __('Terms') }}</a>
+                <a href="{{ route('contact') }}" wire:navigate class="hover:text-primary-400 transition-colors">{{ __('Contact') }}</a>
+            </div>
             <div class="flex justify-center gap-6 mb-8">
                 <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary-500 hover:text-white transition-all">
                     <i class="fab fa-github"></i>
@@ -96,37 +115,27 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50
-        });
+        // Initialize AOS
+        function initAOS() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50
+            });
+        }
 
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('bg-dark-950/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
-            } else {
-                header.classList.remove('bg-dark-950/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize Particles
+        function initParticles() {
             const canvas = document.getElementById('particles-canvas');
-            if (!canvas) {
-                console.error('Canvas not found');
-                return;
-            }
+            if (!canvas) return;
 
             const ctx = canvas.getContext('2d');
             let width, height;
             let particles = [];
             
             // Configuration
-            const particleCount = 100; // Increased count
-            const colors = ['#0ea5e9', '#d946ef', '#6366f1']; // Primary, Accent, Indigo
+            const particleCount = 100;
+            const colors = ['#0ea5e9', '#d946ef', '#6366f1'];
 
             function resize() {
                 width = window.innerWidth;
@@ -141,7 +150,7 @@
                     this.y = Math.random() * height;
                     this.vx = (Math.random() - 0.5) * 0.5;
                     this.vy = (Math.random() - 0.5) * 0.5;
-                    this.size = Math.random() * 2 + 1; // Slightly larger
+                    this.size = Math.random() * 2 + 1;
                     this.color = colors[Math.floor(Math.random() * colors.length)];
                 }
 
@@ -149,7 +158,6 @@
                     this.x += this.vx;
                     this.y += this.vy;
 
-                    // Bounce off edges
                     if (this.x < 0 || this.x > width) this.vx *= -1;
                     if (this.y < 0 || this.y > height) this.vy *= -1;
                 }
@@ -158,17 +166,27 @@
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fillStyle = this.color;
-                    ctx.globalAlpha = 0.6; // More beneficial
+                    ctx.globalAlpha = 0.6;
                     ctx.fill();
                 }
             }
 
-            function init() {
+            function initAndAnimate() {
                 resize();
                 particles = [];
                 for (let i = 0; i < particleCount; i++) {
                     particles.push(new Particle());
                 }
+                
+                // Cancel previous animation frame if exists? 
+                // Simple implementation: just start loop. 
+                // Note: In a robust SPA, we might want to clean up old loops, but for this lightweight script it's okay 
+                // provided we don't multiply loops. 
+                // Better: assign ID to window to cancel it.
+            }
+
+            if (window.particleAnimationId) {
+                cancelAnimationFrame(window.particleAnimationId);
             }
 
             function animate() {
@@ -177,17 +195,44 @@
                     p.update();
                     p.draw();
                 });
-                requestAnimationFrame(animate);
+                window.particleAnimationId = requestAnimationFrame(animate);
             }
 
-            window.addEventListener('resize', () => {
-                resize();
-                // Optionally re-init particles or just let them be
-            });
-
-            init();
+            window.addEventListener('resize', resize);
+            initAndAnimate();
             animate();
-            console.log('Particles started');
+        }
+
+        // Header Scroll Effect
+        function initHeaderScroll() {
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('main-header');
+                if (!header) return;
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-dark-950/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+                } else {
+                    header.classList.remove('bg-dark-950/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+                }
+            });
+        }
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            initAOS();
+            initParticles();
+            initHeaderScroll();
+        });
+
+        // Livewire Navigation Handling
+        document.addEventListener('livewire:navigated', () => {
+            initAOS(); 
+            // Particles are on the body/fixed background, they might persist, 
+            // but if the canvas is wiped or we want to ensure they are there:
+            // initParticles(); // Canvas is outside main slot, so it should persist.
+            // Header scroll listener might need re-attaching if header was re-rendered, 
+            // but header is also outside main slot.
+            
+            // However, AOS definitely needs re-init for new elements.
         });
     </script>
 </body>

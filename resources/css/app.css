@@ -87,4 +87,15 @@
     .blog-content code {
         @apply bg-white/10 px-1 py-0.5 rounded text-sm font-mono text-accent-300;
     }
+
+    /* Livewire Navigation Progress Bar */
+    #nprogress .bar {
+        @apply bg-primary-500 !important;
+        height: 3px !important;
+        z-index: 99999 !important;
+    }
+
+    #nprogress .peg {
+        box-shadow: 0 0 10px var(--color-primary-500), 0 0 5px var(--color-primary-500) !important;
+    }
 }

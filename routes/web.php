@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileController; 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -17,6 +18,10 @@ Route::get('/', function () {
     $posts = \App\Models\Post::with('categories')->where('is_published', true)->latest()->take(3)->get();
     return view('home', compact('programmingProjects', 'lifeProjects', 'technicalSkills', 'generalSkills', 'posts'));
 })->name('home');
+
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');

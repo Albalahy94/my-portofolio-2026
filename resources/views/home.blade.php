@@ -1,5 +1,7 @@
 <x-layout>
     @section('title', __('Said Albalahy - Home'))
+    @section('meta_description', __('hero_tagline') . ' - ' . __('Backend developer specialized in building robust web applications using Laravel. I turn complex ideas into efficient and fast software systems.'))
+    @section('meta_image', asset('images/profile.png'))
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
@@ -54,7 +56,7 @@
                 <a href="#projects" class="btn-primary">
                     <i class="fas fa-code me-2"></i> {{ __('Browse My Work') }}
                 </a>
-                <a href="{{ route('blog.index') }}" class="btn-secondary">
+                <a href="{{ route('blog.index') }}" wire:navigate class="btn-secondary">
                     <i class="fas fa-book-open me-2"></i> {{ __('Read My Blog') }}
                 </a>
             </div>
@@ -234,7 +236,7 @@
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-3 group-hover:text-primary-400 transition-colors">{{ $post->getTrans('title') }}</h3>
                             <p class="text-gray-400 text-sm mb-4 line-clamp-2">{{ Str::limit($post->getTrans('excerpt'), 100) }}</p>
-                            <a href="{{ route('blog.show', $post->slug) }}" class="text-primary-400 text-sm font-semibold hover:tracking-wide transition-all">{{ __('Read More') }} <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i></a>
+                            <a href="{{ route('blog.show', $post->slug) }}" wire:navigate class="text-primary-400 text-sm font-semibold hover:tracking-wide transition-all">{{ __('Read More') }} <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i></a>
                         </div>
                     </article>
                 @empty
@@ -270,7 +272,7 @@
                         <div class="relative overflow-hidden rounded-2xl aspect-video">
                             <div class="absolute inset-0 bg-gradient-to-tr from-primary-600 to-accent-600 opacity-20 group-hover:opacity-30 transition-opacity"></div>
                             <div class="absolute inset-0 flex items-center justify-center bg-dark-950/60 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <a href="{{ route('projects.show', $project) }}" class="btn-primary transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <a href="{{ route('projects.show', $project) }}" wire:navigate class="btn-primary transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                     {{ __('View Details') }}
                                 </a>
                             </div>
@@ -311,7 +313,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="{{ route('projects.index') }}" class="btn-secondary">
+                <a href="{{ route('projects.index') }}" wire:navigate class="btn-secondary">
                     <span>{{ __('View All Projects') }}</span>
                     <i class="fas fa-arrow-right me-2 rtl:rotate-180"></i>
                 </a>
@@ -341,7 +343,7 @@
                         <div class="relative overflow-hidden rounded-2xl aspect-video">
                             <div class="absolute inset-0 bg-gradient-to-tr from-green-600 to-teal-600 opacity-20 group-hover:opacity-30 transition-opacity"></div>
                             <div class="absolute inset-0 flex items-center justify-center bg-dark-950/60 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <a href="{{ route('projects.show', $project) }}" class="px-6 py-2 rounded-full bg-green-600 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-green-500">
+                                <a href="{{ route('projects.show', $project) }}" wire:navigate class="px-6 py-2 rounded-full bg-green-600 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-green-500">
                                     {{ __('View Details') }}
                                 </a>
                             </div>
