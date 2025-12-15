@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('tags', \App\Http\Controllers\Admin\TagController::class);
     Route::resource('skills', \App\Http\Controllers\Admin\SkillController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     
     // Settings
     Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
@@ -63,3 +64,17 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/fix-images', function () {
+    $p = \App\Models\Project::first();
+    if (!$p) return 'No projects found';
+    
+    // Update to a file we know exists from previous ls command
+    $p->image = 'projects/MgEBx5bUoexsZLJSNfhqHlDhHtBIXtMpRSvwBxPZ.png'; 
+    $p->save();
+    
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    
+    return "Fix Applied! Image updated to: " . $p->image . ". <br> <a href='/projects'>Go to Projects</a>";
+});
