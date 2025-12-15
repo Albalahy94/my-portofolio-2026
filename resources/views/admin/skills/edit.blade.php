@@ -28,6 +28,15 @@
                         </div>
 
                         <div>
+                            <x-input-label for="type" :value="__('Skill Type')" />
+                            <select id="type" name="type" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
+                                <option value="technical" {{ old('type', $skill->type) == 'technical' ? 'selected' : '' }}>{{ __('Technical Skill') }}</option>
+                                <option value="general" {{ old('type', $skill->type) == 'general' ? 'selected' : '' }}>{{ __('General Skill') }}</option>
+                            </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('type')" />
+                        </div>
+
+                        <div>
                             <x-input-label for="proficiency" :value="__('Proficiency (%)')" />
                             <x-text-input id="proficiency" name="proficiency" type="number" min="0" max="100" class="mt-1 block w-full" :value="old('proficiency', $skill->proficiency)" required />
                             <x-input-error class="mt-2" :messages="$errors->get('proficiency')" />

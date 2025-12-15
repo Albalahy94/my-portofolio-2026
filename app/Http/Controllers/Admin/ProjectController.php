@@ -33,7 +33,9 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'title.ar' => 'required',
             'title.en' => 'nullable',
+            'title.en' => 'nullable',
             'slug' => 'required|unique:projects,slug',
+            'type' => 'required|in:programming,life',
             'image' => 'nullable|image|max:2048',
             'description.ar' => 'nullable',
             'description.en' => 'nullable',
@@ -94,6 +96,7 @@ class ProjectController extends Controller
             'title.ar' => 'required',
             'title.en' => 'nullable',
             'slug' => 'required|unique:projects,slug,' . $id,
+            'type' => 'required|in:programming,life',
             'image' => 'nullable|image|max:2048',
             'description.ar' => 'nullable',
             'description.en' => 'nullable',

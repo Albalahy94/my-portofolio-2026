@@ -66,6 +66,14 @@
                                 <input type="file" name="image" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1 text-gray-900">
                             </div>
                             
+                            <div>
+                                <label class="block font-medium text-sm text-gray-700">{{ __('Project Type') }}</label>
+                                <select name="type" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1 text-gray-900">
+                                    <option value="programming" {{ old('type', $project->type) == 'programming' ? 'selected' : '' }}>Programming Project</option>
+                                    <option value="life" {{ old('type', $project->type) == 'life' ? 'selected' : '' }}>Life Work / Achievement</option>
+                                </select>
+                            </div>
+                            
                              <div>
                                 <label class="block font-medium text-sm text-gray-700">{{ __('Gallery Images') }}</label>
                                 @if($project->images->count() > 0)

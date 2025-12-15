@@ -11,6 +11,14 @@ class Project extends Model
 
     protected $guarded = [];
 
+    const TYPE_PROGRAMMING = 'programming';
+    const TYPE_LIFE = 'life';
+
+    public function scopeType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+
     protected $casts = [
         'title' => 'array',
         'description' => 'array',

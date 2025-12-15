@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body class="bg-dark-950 text-white font-cairo antialiased overflow-x-hidden">
+<body class="bg-dark-950 text-white font-cairo antialiased overflow-x-hidden ltr:text-left rtl:text-right">
     <canvas id="particles-canvas" class="fixed inset-0 -z-40 pointer-events-none"></canvas>
 
     <!-- Calm Background Animation -->

@@ -3,15 +3,17 @@
 @tailwind utilities;
 
 :root {
-    --color-primary-500: 14 165 233; /* Sky 500 */
-    --color-accent-500: 217 70 239;  /* Fuchsia 500 */
-    --color-bg-950: 2 6 23;          /* Slate 950 */
+    --color-primary-500: 14 165 233;
+    /* Sky 500 */
+    --color-accent-500: 217 70 239;
+    /* Fuchsia 500 */
+    --color-bg-950: 2 6 23;
+    /* Slate 950 */
 }
 
 @layer base {
     body {
         @apply bg-dark-950 text-white font-cairo;
-        direction: rtl;
     }
 }
 

@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\Session;
 
 // Public Routes
 Route::get('/', function () {
-    $projects = \App\Models\Project::latest()->take(4)->get();
+    $programmingProjects = \App\Models\Project::with(['tags'])->type(\App\Models\Project::TYPE_PROGRAMMING)->latest()->take(6)->get();
+    $lifeProjects = \App\Models\Project::with(['tags'])->type(\App\Models\Project::TYPE_LIFE)->latest()->take(6)->get();
+
+    $technicalSkills = \App\Models\Skill::type(\App\Models\Skill::TYPE_TECHNICAL)->orderBy('proficiency', 'desc')->get();
+    $generalSkills = \App\Models\Skill::type(\App\Models\Skill::TYPE_GENERAL)->orderBy('proficiency', 'desc')->get();
+    
     $posts = \App\Models\Post::with('categories')->where('is_published', true)->latest()->take(3)->get();
-    $skills = \App\Models\Skill::orderBy('proficiency', 'desc')->get();
-    return view('home', compact('projects', 'posts', 'skills'));
+    return view('home', compact('programmingProjects', 'lifeProjects', 'technicalSkills', 'generalSkills', 'posts'));
 })->name('home');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');

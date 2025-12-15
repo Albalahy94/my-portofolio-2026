@@ -25,6 +25,7 @@ class SkillController extends Controller
             'name.ar' => 'required|string|max:255',
             'name.en' => 'required|string|max:255',
             'proficiency' => 'required|integer|min:0|max:100',
+            'type' => 'required|in:technical,general',
             'icon' => 'required|string', // FontAwesome class
         ]);
 
@@ -44,6 +45,7 @@ class SkillController extends Controller
             'name.ar' => 'required|string|max:255',
             'name.en' => 'required|string|max:255',
             'proficiency' => 'required|integer|min:0|max:100',
+            'type' => 'required|in:technical,general',
             'icon' => 'required|string',
         ]);
 
