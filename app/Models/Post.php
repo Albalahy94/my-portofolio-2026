@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'title',
         'slug',
@@ -26,6 +30,15 @@ class Post extends Model
         'content' => 'array',
         'excerpt' => 'array',
     ];
+
+    /**
+     * Scope a query to only include published posts.
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true)
+                     ->where('published_at', '<=', now());
+    }
 
     public function relatedProject()
     {
@@ -53,5 +66,10 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

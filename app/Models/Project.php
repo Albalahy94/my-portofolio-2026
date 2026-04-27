@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -25,7 +26,18 @@ class Project extends Model
         'content' => 'array',
         'technologies' => 'array',
         'links' => 'array',
+        'show_on_timeline' => 'boolean',
+        'published_at' => 'datetime',
     ];
+
+    /**
+     * Scope a query to only include published projects.
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true)
+                     ->where('published_at', '<=', now());
+    }
 
     public function images()
     {
@@ -50,5 +62,15 @@ class Project extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
     }
 }

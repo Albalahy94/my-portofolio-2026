@@ -1,5 +1,9 @@
 <x-layout>
     @section('title', $project->getTrans('title') . ' - ' . __('Projects'))
+    @section('meta_description', Str::limit(strip_tags($project->getTrans('description') ?? $project->getTrans('content')), 160))
+    @if($project->image)
+        @section('meta_image', asset('storage/' . $project->image))
+    @endif
 
     <!-- Project Header -->
     <section class="pt-32 pb-10 relative">
@@ -114,19 +118,16 @@
 
                     
                     <div class="glass-effect p-8 md:p-12 rounded-3xl mx-auto max-w-5xl w-full overflow-hidden">
-                         <div class="prose prose-invert prose-lg max-w-none text-right break-all whitespace-pre-wrap w-[90%] mx-auto">
-                             <!-- Content -->
-                                {!! $project->getTrans('content') !!}
-                        </div>    @if($project->getTrans('description'))
-                                <div class="mb-8 font-semibold text-xl leading-relaxed">
-                                    {{ $project->getTrans('description') }}
-                                </div>
-                            @endif
-
-                            <div class="blog-content leading-loose text-gray-300">
-                                {!! $project->getTrans('content') !!}
+                        @if($project->getTrans('description'))
+                            <div class="mb-10 font-bold text-2xl leading-relaxed text-primary-400 border-r-4 border-primary-500 pr-6">
+                                {!! $project->getTrans('description') !!}
                             </div>
+                        @endif
+
+                        <div class="blog-content leading-relaxed text-gray-200 text-lg space-y-6">
+                             {!! $project->getTrans('content') !!}
                         </div>
+                    </div>
                     </div>
                 </div>
 
@@ -165,6 +166,15 @@
                     @endif
                 </div>
             </div>
+        </div>
+        
+        <!-- Interactive Feedback Sections -->
+        <div class="container mx-auto px-6 max-w-5xl mt-16 space-y-12" data-aos="fade-up">
+            <!-- Reviews Section -->
+            @livewire('reviews-section', ['model' => $project])
+
+            <!-- Comments Section -->
+            @livewire('comments-section', ['model' => $project])
         </div>
     </section>
 </x-layout>

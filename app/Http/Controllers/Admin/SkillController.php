@@ -10,7 +10,11 @@ class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::latest()->paginate(10);
+        if (request('status') === 'trashed') {
+            $skills = Skill::onlyTrashed()->latest()->paginate(10);
+        } else {
+            $skills = Skill::latest()->paginate(10);
+        }
         return view('admin.skills.index', compact('skills'));
     }
 
@@ -58,5 +62,19 @@ class SkillController extends Controller
     {
         $skill->delete();
         return redirect()->route('admin.skills.index')->with('success', 'Skill deleted successfully.');
+    }
+
+    public function restore($id)
+    {
+        $skill = Skill::onlyTrashed()->findOrFail($id);
+        $skill->restore();
+        return redirect()->route('admin.skills.index')->with('success', 'Skill restored successfully.');
+    }
+
+    public function forceDelete($id)
+    {
+        $skill = Skill::onlyTrashed()->findOrFail($id);
+        $skill->forceDelete();
+        return redirect()->route('admin.skills.index', ['status' => 'trashed'])->with('success', 'Skill permanently deleted.');
     }
 }

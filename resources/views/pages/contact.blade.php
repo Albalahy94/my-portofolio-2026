@@ -15,13 +15,13 @@
                         </p>
                         
                         <div class="space-y-6">
-                            <a href="mailto:sh.elbalahy@gmail.com" class="flex items-center gap-4 group">
-                                <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-white transition-all">
-                                    <i class="fas fa-envelope text-xl"></i>
+                            <a href="mailto:ceo@albalahy4u.com" class="flex items-center gap-4 group">
+                                <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-primary-500/20 transition-colors">
+                                    <i class="fas fa-envelope text-xl text-slate-400 group-hover:text-primary-400"></i>
                                 </div>
                                 <div>
-                                    <span class="block text-sm text-gray-500">{{ __('Email') }}</span>
-                                    <span class="text-lg font-semibold group-hover:text-primary-400 transition-colors">sh.elbalahy@gmail.com</span>
+                                    <p class="text-slate-400 text-sm mb-1">{{ __('Email') }}</p>
+                                    <span class="text-lg font-semibold group-hover:text-primary-400 transition-colors">ceo@albalahy4u.com</span>
                                 </div>
                             </a>
                             

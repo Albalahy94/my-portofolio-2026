@@ -5,7 +5,7 @@
          onmouseover="this.style.opacity='1'; this.style.visibility='visible'; this.style.transform='translateY(0)';"
          onmouseout="this.style.opacity='0'; this.style.visibility='hidden'; this.style.transform='translateY(16px)';">
         <!-- Email -->
-        <a href="mailto:sh.elbalahy@gmail.com" class="items-center justify-center text-white hover:scale-110 transition-transform" 
+        <a href="mailto:ceo@albalahy4u.com" class="items-center justify-center text-white hover:scale-110 transition-transform" 
            style="width: 48px; height: 48px; border-radius: 50%; background-color: #2563eb; display: flex; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);" 
            title="Email">
             <i class="fas fa-envelope"></i>

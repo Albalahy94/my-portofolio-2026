@@ -8,7 +8,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = \App\Models\Post::where('is_published', true)
+        $posts = \App\Models\Post::published()
             ->latest('published_at')
             ->paginate(9);
             
@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function show($slug)
     {
         $post = \App\Models\Post::where('slug', $slug)
-            ->where('is_published', true)
+            ->published()
             ->firstOrFail();
             
         return view('blog.show', compact('post'));

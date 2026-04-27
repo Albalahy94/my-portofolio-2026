@@ -12,6 +12,9 @@
                 @forelse($posts as $post)
                     <article class="glass-effect rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 group" data-aos="fade-up">
                         <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            @if($post->featured_image)
+                                <img src="{{ Str::startsWith($post->featured_image, 'http') ? $post->featured_image : asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            @endif
                             <div class="absolute inset-0 bg-gradient-to-tr from-primary-900/50 to-accent-900/50 group-hover:scale-110 transition-transform duration-500"></div>
                             <div class="absolute bottom-0 right-0 p-4">
                                 <span class="bg-primary-600/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">مقال</span>

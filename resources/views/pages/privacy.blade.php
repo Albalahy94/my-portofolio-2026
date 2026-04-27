@@ -19,7 +19,7 @@
                     <p>{{ __('privacy_use_content') }}</p>
 
                     <h3 class="text-xl font-bold text-white mt-8 mb-4">{{ __('Contact Us') }}</h3>
-                    <p>{{ __('privacy_contact_content') }} <a href="mailto:sh.elbalahy@gmail.com" class="text-primary-400 hover:underline">sh.elbalahy@gmail.com</a></p>
+                    <p>{{ __('privacy_contact_content') }} <a href="mailto:ceo@albalahy4u.com" class="text-primary-400 hover:underline">ceo@albalahy4u.com</a></p>
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ class AdminUserSeeder extends Seeder
                 'name' => 'Said Albalahy',
                 'email' => 'admin@albalahy4u.com',
                 'password' => Hash::make('password'),
+                'role' => 'owner',
             ]);
             $this->command->info('Admin user created: admin@albalahy4u.com / password');
         }

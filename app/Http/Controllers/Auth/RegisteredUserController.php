@@ -45,6 +45,15 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('admin.dashboard', absolute: false));
+        // Notify Admins
+        \App\Models\AdminNotification::create([
+            'user_id' => null,
+            'type' => 'info',
+            'title' => 'New User Registered',
+            'message' => 'A new user has registered: ' . $user->name . ' (' . $user->email . ')',
+            'data' => ['user_id' => $user->id]
+        ]);
+
+        return redirect(route('dashboard', absolute: false));
     }
 }
