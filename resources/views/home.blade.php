@@ -309,7 +309,7 @@
     </section>
 
     <!-- Programming Projects Section -->
-    <section id="programming-projects" class="py-20 relative">
+    <section id="projects" class="py-20 relative">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark-900/50 pointer-events-none"></div>
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -431,6 +431,207 @@
                         {{ __('No life works to display yet.') }}
                     </div>
                 @endforelse
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="py-24 relative overflow-hidden bg-slate-50 dark:bg-dark-950 border-y border-slate-200 dark:border-white/5 transition-colors duration-500">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full premium-card text-accent-400 mb-4">
+                    <i class="fas fa-tags"></i>
+                    <span>{{ __('Special Offers') }}</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-slate-800 dark:text-white">
+                    {{ __('Project') }} <span class="gradient-text">{{ __('Offers & Prices') }}</span>
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
+                    {{ __('عروض برمجية متكاملة بأسعار تنافسية، مصممة لتلبية احتياجات أعمالك بأحدث التقنيات.') }}
+                </p>
+            </div>
+
+            @php
+                $offers = [
+                    [
+                        'title' => 'منصة Abuelkhair 365',
+                        'subtitle' => 'Laravel + Flutter',
+                        'desc' => 'منصة تعليمية متكاملة بتقدم كورسات لغة إنجليزية بأدوات تفاعلية ذكية.',
+                        'icon' => 'fas fa-graduation-cap',
+                        'color' => 'from-blue-500 to-indigo-500',
+                        'text_color' => 'text-blue-400',
+                        'slug' => 'abuelkhair-proposal',
+                        'features' => ['Flutter iOS + Android', 'Laravel 11 Backend', 'تسليم 18 أسبوع']
+                    ],
+                    [
+                        'title' => 'أكاديمية OctuKheir',
+                        'subtitle' => 'Laravel + Flutter',
+                        'desc' => 'أكاديمية طبية شاملة لإدارة الكورسات، الامتحانات التفاعلية، وبنك الأسئلة.',
+                        'icon' => 'fas fa-user-md',
+                        'color' => 'from-purple-500 to-pink-500',
+                        'text_color' => 'text-purple-400',
+                        'slug' => 'octukheir-proposal',
+                        'features' => ['Flutter iOS + Android', 'React Admin Panel', 'تسليم 14 أسبوع']
+                    ],
+                    [
+                        'title' => 'تطبيق Breadfast Clone',
+                        'subtitle' => 'Laravel + Flutter',
+                        'desc' => 'تطبيق لتوصيل الطلبات والمقاضي بسرعة، بنظام إدارة مخزون وتتبع مناديب.',
+                        'icon' => 'fas fa-shopping-basket',
+                        'color' => 'from-orange-400 to-red-500',
+                        'text_color' => 'text-orange-400',
+                        'slug' => 'breadfast-proposal-v2',
+                        'features' => ['Flutter App', 'Driver Tracking', 'تسليم 12 أسبوع']
+                    ],
+                    [
+                        'title' => 'إدارة صيدلية POS',
+                        'subtitle' => 'Desktop / Web',
+                        'desc' => 'برنامج إدارة صيدليات متكامل، جرد، مبيعات، روشتات، وتنبيهات نواقص.',
+                        'icon' => 'fas fa-pills',
+                        'color' => 'from-green-400 to-emerald-600',
+                        'text_color' => 'text-green-400',
+                        'slug' => 'pharmacy-pos-proposal',
+                        'features' => ['Web-based POS', 'Inventory Alerts', 'تسليم 8 أسابيع']
+                    ],
+                    [
+                        'title' => 'إدارة مخزن ومستودع',
+                        'subtitle' => 'Web App',
+                        'desc' => 'نظام متكامل لإدارة المخازن، حركات الأصناف، الجرد، وتقارير الموردين.',
+                        'icon' => 'fas fa-boxes',
+                        'color' => 'from-blue-400 to-cyan-500',
+                        'text_color' => 'text-cyan-400',
+                        'slug' => 'warehouse-proposal',
+                        'features' => ['Stock Management', 'Barcode Support', 'تسليم 6 أسابيع']
+                    ],
+                    [
+                        'title' => 'برنامج محاسبة',
+                        'subtitle' => 'للشركات الصغيرة',
+                        'desc' => 'نظام محاسبي مبسط، قيود يومية، شجرة حسابات، وتقارير مالية.',
+                        'icon' => 'fas fa-calculator',
+                        'color' => 'from-teal-400 to-green-500',
+                        'text_color' => 'text-teal-400',
+                        'slug' => 'accounting-proposal',
+                        'features' => ['General Ledger', 'Invoices', 'تسليم 10 أسابيع']
+                    ],
+                    [
+                        'title' => 'تطبيقات الأطفال التعليمية',
+                        'subtitle' => 'Arabic + English + Math',
+                        'desc' => 'مجموعة تطبيقات تعليمية تفاعلية للأطفال لتعلم الحروف والرياضيات بأسلوب ممتع.',
+                        'icon' => 'fas fa-child',
+                        'color' => 'from-indigo-500 to-purple-600',
+                        'text_color' => 'text-indigo-400',
+                        'slug' => 'kids-proposal',
+                        'features' => ['Flutter iOS + Android', '3 تطبيقات مستقلة', 'تسليم 14 أسبوع']
+                    ],
+                    [
+                        'title' => 'تطبيق Brainquests',
+                        'subtitle' => 'ألغاز وكويزات ذكية',
+                        'desc' => 'تطبيق كويزات وتحديات بذكاء اصطناعي ونظام Gamification كامل.',
+                        'icon' => 'fas fa-brain',
+                        'color' => 'from-blue-600 to-indigo-700',
+                        'text_color' => 'text-blue-400',
+                        'slug' => 'brainquests-proposal',
+                        'features' => ['1vs1 Real-time Challenge', 'Leagues System', 'تسليم 12 أسبوع']
+                    ],
+                    [
+                        'title' => 'AI Study Planner',
+                        'subtitle' => 'مخطط دراسي بالذكاء الاصطناعي',
+                        'desc' => 'تطبيق يساعد الطلاب على تنظيم وقتهم ومذاكرتهم باستخدام تقنيات AI.',
+                        'icon' => 'fas fa-robot',
+                        'color' => 'from-emerald-500 to-teal-600',
+                        'text_color' => 'text-emerald-400',
+                        'slug' => 'ai-planner-proposal',
+                        'features' => ['AI Study Planning', 'Subscription Model', 'تسليم 13 أسبوع']
+                    ],
+                    [
+                        'title' => 'VideoCutterPro',
+                        'subtitle' => 'تحرير فيديو احترافي',
+                        'desc' => 'تطبيق تعديل فيديو سريع وسلس مع ميزات احترافية وبدون علامة مائية.',
+                        'icon' => 'fas fa-video',
+                        'color' => 'from-rose-500 to-orange-600',
+                        'text_color' => 'text-rose-400',
+                        'slug' => 'videocutter-proposal',
+                        'features' => ['FFmpeg Engine', 'بدون واترمارك مجاناً', 'تسليم 14 أسبوع']
+                    ],
+                ];
+            @endphp
+
+            <!-- Swiper Container -->
+            <div x-data="{
+                    initSwiper() {
+                        if(typeof Swiper !== 'undefined') {
+                            new Swiper(this.$refs.swiper, {
+                                slidesPerView: 1,
+                                spaceBetween: 24,
+                                loop: true,
+                                autoplay: {
+                                    delay: 3500,
+                                    disableOnInteraction: false,
+                                    pauseOnMouseEnter: true,
+                                },
+                                pagination: {
+                                    el: '.swiper-pagination',
+                                    clickable: true,
+                                    dynamicBullets: true,
+                                },
+                                breakpoints: {
+                                    640: { slidesPerView: 1.5, spaceBetween: 20 },
+                                    768: { slidesPerView: 2, spaceBetween: 24 },
+                                    1024: { slidesPerView: 3, spaceBetween: 30 },
+                                }
+                            });
+                        } else {
+                            setTimeout(() => this.initSwiper(), 100);
+                        }
+                    }
+                }"
+                x-init="initSwiper"
+                x-ref="swiper"
+                class="swiper offersSwiper !pb-16" 
+                data-aos="fade-up" 
+                data-aos-delay="100">
+                
+                <div class="swiper-wrapper">
+                    @foreach($offers as $offer)
+                        <div class="swiper-slide h-auto">
+                            <div class="premium-card p-8 rounded-3xl h-full flex flex-col group hover:bg-white/5 transition-all duration-300 relative overflow-hidden border border-slate-200 dark:border-white/10 hover:border-primary-500/50 hover:-translate-y-2 dark:bg-dark-900/40 backdrop-blur-md">
+                                <div class="absolute top-0 end-0 w-32 h-32 bg-gradient-to-br {{ $offer['color'] }} rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity -translate-y-1/2 translate-x-1/2"></div>
+                                
+                                <div class="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-dark-800 flex items-center justify-center text-2xl mb-6 shadow-inner {{ $offer['text_color'] }} group-hover:scale-110 transition-transform">
+                                    <i class="{{ $offer['icon'] }}"></i>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">{{ $offer['title'] }}</h3>
+                                <p class="text-sm font-semibold {{ $offer['text_color'] }} mb-4 opacity-80">{{ $offer['subtitle'] }}</p>
+                                
+                                <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                                    {{ $offer['desc'] }}
+                                </p>
+                                
+                                <ul class="space-y-3 mb-8">
+                                    @foreach($offer['features'] as $feature)
+                                        <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-gray-400">
+                                            <i class="fas fa-check-circle {{ $offer['text_color'] }} text-xs opacity-80"></i>
+                                            <span>{{ $feature }}</span>
+                                        </li>
+                                    @endforeach
+                                    <li class="flex items-center gap-3 text-sm text-slate-800 dark:text-gray-300 mt-2 p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20 border border-accent-500/20 dark:border-accent-500/30">
+                                        <i class="fas fa-handshake text-accent-500"></i>
+                                        <span class="font-bold">{{ __('الأسعار والعروض قابلة للتفاوض') }}</span>
+                                    </li>
+                                </ul>
+                                
+                                <a href="{{ route('offers.show', $offer['slug']) }}" class="btn-primary w-full text-center py-3 rounded-xl mt-auto transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_4px_20px_rgba(37,99,235,0.25)]">
+                                    <span>{{ __('عرض تفاصيل المشروع') }}</span>
+                                    <i class="fas fa-arrow-left text-sm rtl:rotate-180 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>

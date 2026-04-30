@@ -39,6 +39,14 @@ Route::get('lang/{locale}', function ($locale) {
 // Projects
 Route::resource('projects', \App\Http\Controllers\ProjectController::class)->only(['index', 'show']);
 
+// Offers
+Route::get('/offers/{offer}', function ($offer) {
+    if (view()->exists('offers.' . $offer)) {
+        return view('offers.' . $offer);
+    }
+    abort(404);
+})->name('offers.show');
+
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 
 // Short Link Redirect

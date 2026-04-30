@@ -36,6 +36,9 @@
     
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -75,6 +78,7 @@
                 <a href="{{ route('home') }}#about" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{ __('About') }}</a>
                 <a href="{{ route('home') }}#skills" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{ __('Skills') }}</a>
                 <a href="{{ route('home') }}#projects" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{ __('Projects') }}</a>
+                <a href="{{ route('home') }}#offers" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{ __('Offers') }}</a>
                 <a href="{{ route('blog.index') }}" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{ __('Blog') }}</a>
                 <a href="{{ route('home') }}#contact" class="btn-primary py-2 px-4 !rounded-full text-sm">{{ __('Contact') }}</a>
                 
@@ -130,6 +134,7 @@
                 <a @click="mobileMenuOpen = false" href="{{ route('home') }}#about" class="text-lg font-bold text-slate-800 dark:text-white">{{ __('About') }}</a>
                 <a @click="mobileMenuOpen = false" href="{{ route('home') }}#skills" class="text-lg font-bold text-slate-800 dark:text-white">{{ __('Skills') }}</a>
                 <a @click="mobileMenuOpen = false" href="{{ route('home') }}#projects" class="text-lg font-bold text-slate-800 dark:text-white">{{ __('Projects') }}</a>
+                <a @click="mobileMenuOpen = false" href="{{ route('home') }}#offers" class="text-lg font-bold text-slate-800 dark:text-white">{{ __('Offers') }}</a>
                 <a @click="mobileMenuOpen = false" href="{{ route('blog.index') }}" class="text-lg font-bold text-slate-800 dark:text-white">{{ __('Blog') }}</a>
                 
                 <div class="h-px bg-slate-200 dark:bg-white/10 w-full my-2"></div>
@@ -198,6 +203,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // Initialize AOS
         function initAOS() {
